@@ -44,4 +44,38 @@
 </rdf:RDF>
 
 
+
 <!-- foaf:knows - used to descibe one person's relationship with others -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <!-- foaf:knows is not a Symmetric Property, meaning if A knows B, B does not necessarily know A -->
+    <foaf:knows>
+        <foaf:Person>
+            <foaf:mbox rdf:resource="mailto:yuchen@yuchen.net"/>
+            <!-- Additionally we can add rdfs:seeAlso to provide a link to more information about the person -->
+            <!-- In FOAF community this is considered as the hyperlink to more information about the person -->
+            <rdfs:seeAlso rdf:resource="http://www.yuchen.net/jin.rdf"/>
+        </foaf:Person>
+    </foaf:knows>
+</rdf:RDF>
+
+
+
+<!-- How FOAF describe images -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <foaf:Person>
+        <foaf:name>Liyang Yu</foaf:name>
+        <foaf:mbox rdf:resource="mailto:yuchen@yuchen.net"/>
+
+        <!-- foaf:depiction is used to describe relationship between entity and an image (the person(thing) is shows in the image) -->
+        <foaf:depiction rdf:resource="http://www.example.org/images/liyangyu.jpg"/>
+
+        <!-- foaf:depicts is the inverse property of foaf:depiction -->
+        <!-- The relationship between image and the person(thing) depicted in the image -->
+        <foaf:depicts rdf:resource="http://www.yuchen.net/jin.rdf"/>
+    </foaf:Person>
+</rdf:RDF>
+
