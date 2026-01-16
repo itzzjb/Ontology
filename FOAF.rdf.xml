@@ -1,0 +1,47 @@
+<!-- FOAF - Friend of a Friend ontology -->
+
+<!-- Basic Syntax with FOAF -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+  <!-- Define a Person via FOAF -->
+
+  <!-- foaf:Person is the class that represents a person in FOAF -->
+  <!-- You can see there is no URI being decaled for the Person using rdf:ID or rdf:about -->
+  <!-- It's no point to have a URI bacause our goal at the end is to let other people describe this person, 
+       and if we depend on other person knowing this unique URI, it defeats the purpose of FOAF -->
+  <foaf:Person>
+    <!-- foaf:name is used to specify the name of the person -->
+    <foaf:name>Liyang Yu</foaf:name>
+    <!-- foaf:mbox is used to specify the email address of the person-->
+    <!-- This is a inverse functional property -->
+    <!-- So, if a person has the same email address, they are considered the same person. And we depend on this property to uniquely identify a person.-->
+    <foaf:mbox rdf:resource="mailto:liyangyu@example.org"/>
+  </foaf:Person>
+
+
+  <!-- If there is another record like follows in a diffenet rdf document -->
+    <foaf:Person>
+    <foaf:name>Yu Liyang</foaf:name>
+    <!-- Since the mail is same we know that Liyang Yu and Yu Liyang are the same person -->
+    <foaf:mbox rdf:resource="mailto:liyangyu@example.org"/>
+  </foaf:Person>
+</rdf:RDF>  
+
+
+
+<!-- But exposing the mail might have downsights like getting lot of spam emails -->
+<!-- So, we can use foaf:mbox_sha1sum to hide the email address by hashing it -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <foaf:Person>   
+        <foaf:name>Liyang Yu</foaf:name>
+        <!-- foaf:mbox_sha1sum is used to specify the SHA1 hash of the email address -->
+        <foaf:mbox_sha1sum>5eb63bbbe01eeed093cb22bb8f5acdc3</foaf:mbox_sha1sum>
+    </foaf:Person>
+</rdf:RDF>
+
+
+<!-- foaf:knows - used to descibe one person's relationship with others -->
