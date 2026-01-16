@@ -279,6 +279,7 @@
 
 </rdf:RDF>
 
+<!-- owl:sameIndividualAs -->
 <!-- In another docuemt, if we have a instance that is equal to the above one. -->
 <!-- Notice that we are using the same onthology in the default namespace, but the URI is different in this ducument. -->
 <!-- URI is http://www.yufriend.net/rdf/NikonD70.rdf#AsianNikonD70 -->
@@ -296,7 +297,7 @@
 
 </rdf:RDF>
 
-
+<!-- owl:differentFrom -->
 <!-- In another docuemt, if we have a instance that is different from the first one. -->
 <!-- Notice that we are using the same onthology in the default namespace, but the URI is different in this ducument. -->
 <!-- URI is http://www.anotherfriend.net/rdf/NikonD70.rdf#EuropeanNikonD70 -->
