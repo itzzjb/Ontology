@@ -262,3 +262,53 @@
 </rdf:RDF>
 
 
+
+<!-- owl:sameIndividualAs, owl:differentFrom  -  Indicating two instaces in two RDF documemts are the same / different -->
+
+<!-- The main document is as follows. Using the http://www.yuchen.net/photography/Camera.owl onthology, it's set as default namespace. -->
+<!-- URI is http://www.yuchen.net/rdf/NikonD70.rdf#Nikon-D70 -->
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yuchen.net/rdf/NikonD70.rdf"
+    xmlns="http://www.yuchen.net/photography/Camera.owl#">
+
+    <SLR rdf:ID="NikonD70">
+        <owned_by rdf:resource="http://www.yuchen.net/people#LiyangYu"/>
+    </SLR>
+
+</rdf:RDF>
+
+<!-- In another docuemt, if we have a instance that is equal to the above one. -->
+<!-- Notice that we are using the same onthology in the default namespace, but the URI is different in this ducument. -->
+<!-- URI is http://www.yufriend.net/rdf/NikonD70.rdf#AsianNikonD70 -->
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yufriend.net/rdf/NikonD70.rdf"
+    xmlns="http://www.yuchen.net/photography/Camera.owl#">
+
+    <SLR rdf:ID="AsianNikonD70">
+        <!-- owl:sameIndividualAs indicates that this instance is the same as another instance -->
+        <owl:sameIndividualAs rdf:resource="http://www.yuchen.net/photography/Camera.rdf#NikonD70"/>
+        <owned_by rdf:resource="http://www.yuchen.net/people#LiyangYu"/>
+    </SLR>
+
+</rdf:RDF>
+
+
+<!-- In another docuemt, if we have a instance that is different from the first one. -->
+<!-- Notice that we are using the same onthology in the default namespace, but the URI is different in this ducument. -->
+<!-- URI is http://www.anotherfriend.net/rdf/NikonD70.rdf#EuropeanNikonD70 -->
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.anotherfriend.net/rdf/NikonD70.rdf"
+    xmlns="http://www.yuchen.net/photography/Camera.owl#">  
+    <SLR rdf:ID="EuropeanNikonD70">
+        <!-- owl:differentFrom indicates that this instance is different from another instance -->
+        <owl:differentFrom rdf:resource="http://www.yuchen.net/photography/Camera.rdf#NikonD70"/>
+        <owned_by rdf:resource="http://www.yuchen.net/people#HansMuller"/>
+    </SLR>
+
+</rdf:RDF>
