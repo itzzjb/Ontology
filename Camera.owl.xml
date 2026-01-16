@@ -61,3 +61,152 @@
 
 </rdf:RDF>
 
+
+
+<!-- Owl Class Features - owl:allValuesFrom -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yuchen.net/photography/Camera.owl">  
+
+    <!-- #### Classes #### -->
+    
+    <owl:Class rdf:ID="SLR"> 
+        <rdfs:subClassOf rdf:resource="#Digital"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Photographer"> 
+        <rdfs:subClassOf rdf:resource="#Person"/>
+    </owl:Class>
+
+
+    <!-- Following is the owned_by property -->
+    <!-- Because subclasses inherit properties from their superclasses -->
+    <!-- This means that ExpensiveSLR can be owned_by both Professionals and Amateurs -->
+    <rdfs:Property rdf:ID="owned_by">
+        <rdfs:domain rdf:resource="#Camera"/>
+        <rdfs:range rdf:resource="#Photographer"/>
+    </rdfs:Property>
+
+    <!-- Professional and Amateur are subclasses of SLR -->
+    <owl:Class rdf:ID="Professional"> 
+        <rdfs:subClassOf rdf:resource="#Photographer"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Amateur"> 
+        <rdfs:subClassOf rdf:resource="#Photographer"/>
+    </owl:Class>
+    
+    <!-- Expensive SLR is a subclass of SLR -->
+    <!-- Inorder to explicitly express that ExpensiveSLR can only be owned_by Professionals -->
+    <owl:Class rdf:ID="ExpensiveSLR">
+        <rdfs:subClassOf rdf:resource="#SLR">
+            <rdfs:subClassOf>
+                <!-- owl:Restriction is used to specify a anonymous class -->
+                <owl:Restriction>
+                    <!-- owl:onProperty specifies the property to which the restriction applies -->
+                    <owl:onProperty rdf:resource="#owned_by"/>
+                    <!-- owl:allValuesFrom specifies that all values of the property must be from the specified class -->
+                    <owl:allValuesFrom rdf:resource="#Professional"/>
+                </owl:Restriction>
+            </rdfs:subClassOf>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+</rdf:RDF>
+
+
+
+<!-- Owl Class Features - owl:someValuesFrom -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yuchen.net/photography/Camera.owl">  
+
+    <!-- #### Classes #### -->
+    
+    <owl:Class rdf:ID="SLR"> 
+        <rdfs:subClassOf rdf:resource="#Digital"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Photographer"> 
+        <rdfs:subClassOf rdf:resource="#Person"/>
+    </owl:Class>
+
+    <rdfs:Property rdf:ID="owned_by">
+        <rdfs:domain rdf:resource="#Camera"/>
+        <rdfs:range rdf:resource="#Photographer"/>
+    </rdfs:Property>
+
+    <owl:Class rdf:ID="Professional"> 
+        <rdfs:subClassOf rdf:resource="#Photographer"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Amateur"> 
+        <rdfs:subClassOf rdf:resource="#Photographer"/>
+    </owl:Class>
+    
+    <!-- Inorder loose some restrictions from before and give Amateurs the ability to own ExpensiveSLR 
+    given the fact that atleast one of the owners is a Professional -->
+    <owl:Class rdf:ID="ExpensiveSLR">
+        <rdfs:subClassOf rdf:resource="#SLR">
+            <rdfs:subClassOf>
+                <!-- owl:Restriction is used to specify a anonymous class -->
+                <owl:Restriction>
+                    <!-- owl:onProperty specifies the property to which the restriction applies -->
+                    <owl:onProperty rdf:resource="#owned_by"/>
+                    <!-- owl:someValuesFrom specifies that some values of the property must be from the specified class -->
+                    <owl:someValuesFrom rdf:resource="#Professional"/>
+                </owl:Restriction>
+            </rdfs:subClassOf>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    </owl:Class>
+
+</rdf:RDF>
+
+
+<!-- Owl Class Features - owl:hasValue -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yuchen.net/photography/Camera.owl">  
+
+    <!-- #### Classes ### -->
+    
+    <owl:Class rdf:ID="SLR"> 
+        <rdfs:subClassOf rdf:resource="#Digital"/>
+    </owl:Class>
+
+    <!-- A property called expensiveOrNot that returns a string -->
+    <!-- owl:DatatypeProperty is used to define a property that links an individual to a data value -->
+    <!-- You can assign expensive or inexpensive as values -->
+    <!-- This property can be used by class Digital and subclasses SLR, PointAndShoot and ExpensiveSLR -->
+    <owl:DatatypeProperty rdf:ID="expensiveOrNot">
+        <rdfs:domain rdf:resource="#Digital"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+    <!-- We can constrain expeniveOrNot property to always be `expensive` for ExpensiveSLR class -->
+    <owl:Class rdf:ID="ExpensiveSLR">
+        <rdfs:subClassOf rdf:resource="#SLR">
+            <rdfs:subClassOf>
+                <owl:Restriction>
+                    <owl:onProperty rdf:resource="#expensiveOrNot"/>
+                    <!-- owl:hasValue specifies that the property must have the specified value -->
+                    <!-- Notice that rdf:dataType is used to specify the datatype of the value -->
+                    <owl:hasValue rdf:dataType="http://www.w3.org/2001/XMLSchema#string">
+                        expensive
+                    </owl:hasValue>
+                </owl:Restriction>
+            </rdfs:subClassOf>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    </owl:Class>
+
+</rdf:RDF>
