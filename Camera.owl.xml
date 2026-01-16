@@ -1,0 +1,6 @@
+<!-- Main use cases as follows -->
+<!-- 1. Express relationships amongs classes defined in different documents accross web -->
+<!-- 2. Construct new classes by unions, intersections, and complements of existing classes -->
+<!-- 3. Add constraints on the number and type of properties of classes -->
+<!-- 4. Determine if all members of a class will have a certain property or only some of them might -->
+

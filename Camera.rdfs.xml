@@ -1,3 +1,5 @@
+<!-- Main use case is to define Classes, their Relationships and their Properties -->
+
 <!-- Long form of defining a class in RDFS Schema -->
 <!-- Note that xmlns:base ns is here. So we can use rdf.ID -->
 <!-- When the xml:base is used the namespace doesn't end wih a # -->
