@@ -189,10 +189,7 @@
     
     <!-- We can constrain expeniveOrNot property to always be `expensive` for ExpensiveSLR class -->
     <owl:Class rdf:ID="ExpensiveSLR">
-        <rdfs:subClassOf rdf:resource="#SLR">
-            <rdfs:subClassOf>
-                <owl:Restriction>
-                    <owl:onProperty rdf:reso/>
+        <rdfs:subClassOf rdf:resource="#SLR"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#expensiveOrNot"/>
@@ -202,4 +199,7 @@
                     expensive
                 </owl:hasValue>
             </owl:Restriction>
-        </rdfs:subClassOf></rdf:RDF>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+</rdf:RDF>
