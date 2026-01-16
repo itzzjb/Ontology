@@ -1,6 +1,63 @@
-<!-- Main use cases as follows -->
+<!-- Main use cases is to is to define Classes, their Relationships and their Properties. -->
+<!-- Compared to RDFS expresses much more complex and richer relaionships -->
+
 <!-- 1. Express relationships amongs classes defined in different documents accross web -->
 <!-- 2. Construct new classes by unions, intersections, and complements of existing classes -->
 <!-- 3. Add constraints on the number and type of properties of classes -->
 <!-- 4. Determine if all members of a class will have a certain property or only some of them might -->
+
+<!-- Defining a Class in OWL -->
+<!-- A class defined in a OWL is a subclass of owl:Thing. owl:Thing is the root class of all classes. -->
+<!-- owl:Thing > rdfs:Resource > rdfs:Class > owl:Class -->
+<!-- owl:Class is a subclass of rdfs:Class -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yuchen.net/photography/Camera.owl">
+    
+    <owl:Class rdf:ID="Camera">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Convert the Class definitions on Camera.rdfs to OWL -->
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:base="http://www.yuchen.net/photography/Camera.owl">  
+
+    <owl:Class rdf:ID="Camera">
+    </owl:Class>
+
+    <owl:Class rdf:ID="Person">
+    </owl:Class>
+
+    <owl:Class rdf:ID="Specifications">
+    </owl:Class>
+
+    <owl:Class rdf:ID="Digital"> 
+        <rdfs:subClassOf rdf:resource="#Camera"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Film"> 
+        <rdfs:subClassOf rdf:resource="#Camera"/>
+    </owl:Class>
+    
+    <owl:Class rdf:ID="SLR"> 
+        <rdfs:subClassOf rdf:resource="#Digital"/>
+    </owl:Class>   
+    
+    <!-- Point-And-Shoot class form RDFS is changes to PointAndShoot because some validators do not accept hyphens in class names -->
+    <owl:Class rdf:ID="PointAndShoot"> 
+        <rdfs:subClassOf rdf:resource="#Digital"/>
+    </owl:Class>
+    <owl:Class rdf:ID="Photographer"> 
+        <rdfs:subClassOf rdf:resource="#Person"/>
+    </owl:Class>
+
+</rdf:RDF>
 
