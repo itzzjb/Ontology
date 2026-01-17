@@ -72,3 +72,14 @@ WHERE {
 }
 LIMIT 10
 OFFSET 5
+
+# AGGREGATE FUNCTIONS
+# COUNT, SUM, AVG, MIN, MAX can be used to perform calculations on groups of results.
+
+PREFIX ex: <http://example.org/>
+SELECT ?brand (COUNT(?car) AS ?carCount) (AVG(?price) AS ?avgPrice)
+WHERE {
+  ?car ex:hasBrand ?brand ;
+       ex:hasPrice ?price ?price .
+}
+GROUP BY ?brand 
