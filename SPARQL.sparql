@@ -34,3 +34,41 @@ WHERE {
 
 # UNION
 # Combines multiple patterns, returning results that match any of the patterns.
+PREFIX ex: <http://example.org/>
+SELECT ?person ?vehicle
+WHERE {
+  { ?person ex:hasCar ?vehicle . }
+  UNION
+  { ?person ex:hasBike ?vehicle . }
+}
+
+# DISTINCT
+# Ensures that the results returned are unique, eliminating duplicate rows.
+
+PREFIX ex: <http://example.org/>
+SELECT DISTINCT ?person ?age
+WHERE {
+  ?person ex:age ?age .
+}
+
+
+# ORDER BY
+# Sorts the results based on specified variables in ascending (ASC) or descending (DESC) order.
+PREFIX ex: <http://example.org/>
+SELECT ?person ?age
+WHERE {
+  ?person ex:age ?age .
+}
+ORDER BY DESC(?age)
+
+
+# LIMIT and OFFSET
+# LIMIT restricts the number of results returned. OFFSET skips a specified number of results before starting to return results.
+
+PREFIX ex: <http://example.org/>
+SELECT ?person ?age
+WHERE {
+  ?person ex:age ?age .
+}
+LIMIT 10
+OFFSET 5
