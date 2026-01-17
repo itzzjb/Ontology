@@ -1,7 +1,36 @@
 # SELECT
+# Retries data from RDF datasets.
+
 PREFIX ex: <http://example.org/>
 
-SELECT ?subject ?predicate ?object
+SELECT ?person ?car
 WHERE {
-  ?subject ?predicate ?object .
+  ?person ex:hasCar ?car .
 }
+
+# FILTER
+# Specifies conditions to filter the results.
+# =, !=, <, >, <=, >=, &&, ||, !, /.*/  can be used.
+
+PREFIX ex: <http://example.org/>    
+SELECT ?car ?price
+WHERE {
+  ?car ex:price ?price .
+  FILTER (?price < 20000 && ?price >= 5000)
+}
+
+# OPTIONAL
+# Adds patterns that may or may not exist in the data. 
+# If exists returns the value, otherwise returns unbound value.
+
+PREFIX ex: <http://example.org/>
+SELECT ?person ?car ?color
+WHERE {
+  ?person ex:hasCar ?car .
+  OPTIONAL { 
+    ?car ex:hasColor ?color . 
+  }
+}
+
+# UNION
+# Combines multiple patterns, returning results that match any of the patterns.
